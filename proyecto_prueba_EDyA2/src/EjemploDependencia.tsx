@@ -5,7 +5,7 @@ function EjemploDependencia (){
 
     useEffect(() => {
         console.log('EL nombre cambio:', nombre);
-    } [nombre]);
+    }, [nombre]);
 
     return (
         <>
