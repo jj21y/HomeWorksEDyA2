@@ -88,9 +88,24 @@ function App() {
     const D1: Doctor = {nombre: "Doc Juan Jose", codigo: "2234991", next: null}
     const D2: Doctor = {nombre: "Doc Ana Sofia", codigo: "2234881", next: null}
     const D3: Doctor = {nombre: "Doc Lucy", codigo: "2234771", next: null}
-  })
+    
+    
+    D1.next = D2
+    D2.next = D3
+    D3.next = D1
 
+    setDoctorActual(D1)
+  },[])
 
+  useEffect(() => {
+    const IntervaloCambio = setInterval(() => {
+      if(DoctorActual?.next){
+        setDoctorActual(DoctorActual.next)
+      }
+
+    }, 10000)
+    return () => clearInterval(IntervaloCambio)
+  },[DoctorActual])
 }
 
 
