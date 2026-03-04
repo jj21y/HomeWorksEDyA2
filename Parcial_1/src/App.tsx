@@ -33,6 +33,7 @@ function App() {
   const [CedulaPatient, setCedulaPatient] = useState("");
   const [HeadHistory, setHeadHistory] = useState<History | null>(null);
   const [DoctorActual, setDoctorActual] = useState <Doctor | null>(null);
+  const [Comite, setComite] = useState <MiembroComite | null> (null);
 
 
   const addpatient = () => {
@@ -106,6 +107,28 @@ function App() {
     }, 10000)
     return () => clearInterval(IntervaloCambio)
   },[DoctorActual])
+
+    useEffect(() => {
+    const mem1: MiembroComite = { nombre: "Juanito", numeroMiembro: "3127221082", prev: null, next: null };
+    const mem2: MiembroComite = { nombre: "María", numeroMiembro: "3176151081", prev: null, next: null };
+    const mem3: MiembroComite = { nombre: "Pedro", numeroMiembro: "3206967663", prev: null, next: null };
+    const mem4: MiembroComite = { nombre: "Alfredo", numeroMiembro: "3156967542", prev: null, next: null };
+
+    // conectar doble circular
+    mem1.next = mem2;
+    mem2.next = mem3;
+    mem3.next = mem4;
+    mem4.next = mem1;
+
+    mem1.prev = mem4;
+    mem2.prev = mem1;
+    mem3.prev = mem2;
+    mem4.prev = mem3;
+
+    setComite(mem1);
+  }, []);
+
+  
 }
 
 
