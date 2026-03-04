@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import './App.css'
   type Patient = {
@@ -44,7 +44,7 @@ function App() {
       cedula: CedulaPatient,
       next: null
     }
-     if (!HeadPatient) {
+    if (!HeadPatient) {
       setHeadPatient(nuevo);
     } else {
       let actual = HeadPatient;
