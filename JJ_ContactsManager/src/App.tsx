@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import ContactForm from "./ContactForm";
+import ContactList from "./ContactsList";
+import Loader from "./Loader";
 
-function App() {
-  const [count, setCount] = useState(0)
+function App(){
+  const [contacts, setContacts] = useState <
+  {name: string ; phone: string}[]
+  >([])
 
+  const [loading, setLoading] = useState (true)
+
+  useEffect (()=> {
+    setTimeout(()=>{
+      setContacts([
+        {name: 'Juan Jose', phone: '3176151081'},
+        {name: 'Pepito', phone: '3127221082'},
+        {name: 'Maria', phone: '3156757180'},
+        {name: 'Angela', phone: '3128907616'}
+      ])
+      setLoading(false)
+    }, 2000)
+  }, [])
+  const addContact = (contact: {name: string ; phone: string }) => {
+    setContacts(prev => [...prev, contact])
+  }
+
+  const deleteContact = (index: number ) => {
+    setContacts(prev => prev.filter((_, i) => i !== index ))
+  }
+  if (loading) return <Loader/>
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <h1>Lista de Contactos</h1>
+      <ContactForm addContact={addContact} />
+      <ContactList 
+        contacts={contacts} 
+        deleteContact={deleteContact} 
+      />
     </>
   )
 }
-
-export default App
+export default App;
