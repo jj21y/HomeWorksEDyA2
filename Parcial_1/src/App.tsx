@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import React, { useState } from 'react'
-
 import './App.css'
+
   type Patient = {
     nombre: string;
     cedula: string;
@@ -28,6 +28,7 @@ import './App.css'
     prev: MiembroComite | null;
   }
 function App() {
+  
   const [HeadPatient, setHeadPatient] = useState<Patient | null>(null);
   const [NombrePatient, setNombrePatient] = useState("");
   const [CedulaPatient, setCedulaPatient] = useState("");
@@ -61,8 +62,8 @@ function App() {
       setHeadPatient(newHead);
     }
 
-    setNombrePatient("");
-    setCedulaPatient("");
+    setNombrePatient("ingrese el nombre del paciente:");
+    setCedulaPatient("Ingrese la cedula del paciente:");
   }
   const addHistory = (nombre: string, cedula: string) => {
     const nuevo: History = {
@@ -96,8 +97,6 @@ function App() {
     const D1: Doctor = {nombre: "Doc Juan Jose", codigo: "2234991", next: null}
     const D2: Doctor = {nombre: "Doc Ana Sofia", codigo: "2234881", next: null}
     const D3: Doctor = {nombre: "Doc Lucy", codigo: "2234771", next: null}
-    
-    
     D1.next = D2
     D2.next = D3
     D3.next = D1
@@ -121,7 +120,6 @@ function App() {
     const mem3: MiembroComite = { nombre: "Pedro", numeroMiembro: "3206967663", prev: null, next: null };
     const mem4: MiembroComite = { nombre: "Alfredo", numeroMiembro: "3156967542", prev: null, next: null };
 
-    // conectar doble circular
     mem1.next = mem2;
     mem2.next = mem3;
     mem3.next = mem4;
@@ -169,12 +167,12 @@ function App() {
 
       <h2>Agregar Paciente</h2>
       <input
-        placeholder="Nombre"
+        placeholder="Nombre:"
         value={NombrePatient}
         onChange={(e) => setNombrePatient(e.target.value)}
       />
       <input
-        placeholder="Cédula"
+        placeholder="Cédula:"
         value={CedulaPatient}
         onChange={(e) => setCedulaPatient(e.target.value)}
       />
