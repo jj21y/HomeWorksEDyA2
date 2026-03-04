@@ -190,7 +190,7 @@ function App() {
       <h2>Historial de Atención de clientes</h2>
       <ul>{showHistory()}</ul>
 
-      <h2>Comité Administrativo</h2>
+      <h2>Comite Administrativo</h2>
       <p>
         {Comite?.nombre} - Cel: {Comite?.numeroMiembro}
       </p>
