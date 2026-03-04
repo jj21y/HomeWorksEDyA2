@@ -47,11 +47,18 @@ function App() {
     if (!HeadPatient) {
       setHeadPatient(nuevo);
     } else {
-      let actual = HeadPatient;
-      while (actual.next) {
-        actual = actual.next;
+      let current = HeadPatient;
+      while (current.next) {
+        current = current.next;
       }
-      actual.next = nuevo;
+      const newHead = { ...HeadPatient };
+      let newCurrent = newHead;
+      while (newCurrent.next) {
+        newCurrent = { ...newCurrent.next };
+        newCurrent = newCurrent.next;
+      }
+      newCurrent.next = nuevo;
+      setHeadPatient(newHead);
     }
 
     setNombrePatient("");
