@@ -128,7 +128,69 @@ function App() {
     setComite(mem1);
   }, []);
 
-  
+  const mostrarPatients = () => {
+    const List = [];
+    let actual = HeadPatient;
+    while (actual) {
+      List.push(
+        <li key={actual.cedula}>
+          {actual.nombre} - {actual.cedula}
+        </li>
+      );
+      actual = actual.next;
+    }
+    return List;
+  };
+
+  const showHistory = () => {
+    const List = [];
+    let actual = HeadHistory;
+    while (actual) {
+      List.push(
+        <li key={actual.cedula}>
+          {actual.nombre} - {actual.cedula}
+        </li>
+      );
+      actual = actual.next;
+    }
+    return List;
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Panel Clinica </h1>
+
+      <h2>Agregar Paciente</h2>
+      <input
+        placeholder="Nombre"
+        value={NombrePatient}
+        onChange={(e) => setNombrePatient(e.target.value)}
+      />
+      <input
+        placeholder="Cédula"
+        value={CedulaPatient}
+        onChange={(e) => setCedulaPatient(e.target.value)}
+      />
+      <button onClick={addpatient}>Agregar</button>
+
+      <h2>Pacientes en lista de espera</h2>
+      <ul>{mostrarPatients()}</ul>
+      <button onClick={atenderPatient}>Atender Paciente</button>
+
+      <h2>Médico de Guardia (cambia cada 10 seg)</h2>
+      <p>
+        {DoctorActual?.nombre} - Código: {DoctorActual?.codigo}
+      </p>
+
+      <h2>Historial de Atención de clientes</h2>
+      <ul>{showHistory()}</ul>
+
+      <h2>Comité Administrativo</h2>
+      <p>
+        {Comite?.nombre} - Cel: {Comite?.numeroMiembro}
+      </p>
+    </div>
+  );
 }
 
 
