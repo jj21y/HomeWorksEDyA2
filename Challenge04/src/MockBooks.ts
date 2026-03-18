@@ -1,4 +1,4 @@
-import {Book} from 'src/Book.ts';
+import Book from '.Book.ts';
 
 const MockBooks: Books[] = [
     {

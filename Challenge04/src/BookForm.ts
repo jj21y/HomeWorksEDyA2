@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Book } from "./Book"
+import { Book } from "../types/Book";
 
 interface Props {
   onAddBook: (book: Book) => void;
@@ -14,10 +14,12 @@ function BookForm({ onAddBook }: Props) {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+
+    setForm(prev => ({
+      ...prev,
+      [name as keyof Book]: value
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -35,9 +37,9 @@ function BookForm({ onAddBook }: Props) {
   return (
     <form onSubmit={handleSubmit}>
       <input name="name" placeholder="Nombre" value={form.name} onChange={handleChange} />
-      <input name="isbn" placeholder="ISBN" value={form.isbn} onChange={handleChange} />
-      <input name="author" placeholder="Autor" value={form.author} onChange={handleChange} />
-      <input name="editorial" placeholder="Editorial" value={form.editorial} onChange={handleChange} />
+      <input isbn="isbn" placeholder="ISBN" value={form.isbn} onChange={handleChange} />
+      <input author="author" placeholder="Autor" value={form.author} onChange={handleChange} />
+      <input editorial="editorial" placeholder="Editorial" value={form.editorial} onChange={handleChange} />
 
       <button type="submit">Agregar Libro</button>
     </form>
