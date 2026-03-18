@@ -1,10 +1,13 @@
 import { useState } from "react";
+import {BookForm} from "./BookForm";
+import { Book } from "./Book";
+
 import {Stack} from
 
 function BooksStackPage() {
   const [stack] = useState(() => {
     const s = new Stack<Book>();
-    mockBooks.forEach(b => s.push(b));
+    MockBooks.forEach(b => s.push(b));
     return s;
   });
 
