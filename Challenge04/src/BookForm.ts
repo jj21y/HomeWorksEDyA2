@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { Book } from "../types/Book";
+import { Book } from "./Book";
 
 interface Props {
   onAddBook: (book: Book) => void;
 }
 
+const initialState: Book = {
+  name: "",
+  isbn: "",
+  author: "",
+  editorial: ""
+};
+
 function BookForm({ onAddBook }: Props) {
-  const [form, setForm] = useState<Book>({
-    name: "",
-    isbn: "",
-    author: "",
-    editorial: ""
-  });
+  const [form, setForm] = useState<Book>(initialState);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,22 +26,22 @@ function BookForm({ onAddBook }: Props) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onAddBook(form);
 
-    setForm({
-      name: "",
-      isbn: "",
-      author: "",
-      editorial: ""
-    });
+    if (!form.name || !form.isbn || !form.author || !form.editorial) {
+      alert("Todos los campos son obligatorios");
+      return;
+    }
+
+    onAddBook(form);
+    setForm(initialState);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input name="name" placeholder="Nombre" value={form.name} onChange={handleChange} />
-      <input isbn="isbn" placeholder="ISBN" value={form.isbn} onChange={handleChange} />
-      <input author="author" placeholder="Autor" value={form.author} onChange={handleChange} />
-      <input editorial="editorial" placeholder="Editorial" value={form.editorial} onChange={handleChange} />
+      <input name="isbn" placeholder="ISBN" value={form.isbn} onChange={handleChange} />
+      <input name="author" placeholder="Autor" value={form.author} onChange={handleChange} />
+      <input name="editorial" placeholder="Editorial" value={form.editorial} onChange={handleChange} />
 
       <button type="submit">Agregar Libro</button>
     </form>
