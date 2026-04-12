@@ -1,7 +1,9 @@
-export interface IMenuNode {
-    id: string;
-    title: string;
-    path: string;
-    children: IMenuNode[];
-}
+import { ReactNode } from 'react';
 
+export interface IMenuNode {
+  id: string;
+  title: string;
+  path: string;
+  component: ReactNode; 
+  children?: IMenuNode[];
+}

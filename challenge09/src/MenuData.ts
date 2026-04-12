@@ -1,34 +1,31 @@
-import  IMenuNode  from "./types";
+import { IMenuNode } from './types';
 
 export const sidebarData: IMenuNode[] = [
-    {
-        id: '1',
-        title: 'Dashboard',
-        path: '/dashboard',
+  {
+    id: '1',
+    title: 'Dashboard',
+    path: '/dashboard',
+    component: <div>Vista General del Dashboard</div>,
+    children: [
+      { id: '1-1', title: 'Ventas', path: '/sales', component: <div>Panel de Ventas</div> },
+      { id: '1-2', title: 'Métricas', path: '/stats', component: <div>Estadísticas</div> },
+    ],
+  },
+  {
+    id: '2',
+    title: 'Configuración',
+    path: '/settings',
+    component: <div>Ajustes del Sistema</div>,
+    children: [
+      {
+        id: '2-1',
+        title: 'Perfil',
+        path: '/profile',
+        component: <div>Ajustes de Perfil</div>,
         children: [
-            {id: '1-1', title: 'Ventas', path: '/dashboard/ventas'},
-            {id: '1-2', title: 'Metricas', path: '/dashboard/metricas'}
-        ],
-    },
-    {
-        id: '2',
-        title: 'Gestion de Contenido',
-        path: '/contenido',
-        children: [
-            {
-                id: '2-1',
-                title: 'Articulos',
-                path: '/contenido/articulos',
-                children: [
-                    {id: '2-1-1', title: 'Borradores', path: 'contenido/articulos/borradores'},
-                    {id: '2-1-2', title: 'Publicados', path: 'contenido/articulos/publicados'},
-                ],
-            },
-        ],
-    },
-    {
-        id: '3',
-        title: 'Configuracion',
-        path: '/confirguraciones',
-    },
-]
+          { id: '2-1-1', title: 'Seguridad', path: '/security', component: <div>Cambiar Contraseña</div> }
+        ]
+      }
+    ]
+  }
+];
