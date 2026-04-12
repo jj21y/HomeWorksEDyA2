@@ -5,7 +5,6 @@ export const sidebarData: IMenuNode[] = [
         id: '1',
         title: 'Dashboard',
         path: '/dashboard',
-        component: 
         children: [
             {id: '1-1', title: 'Ventas', path: '/dashboard/ventas'},
             {id: '1-2', title: 'Metricas', path: '/dashboard/metricas'}

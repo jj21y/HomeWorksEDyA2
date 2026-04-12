@@ -4,7 +4,7 @@ export interface IMenuNode {
     id: string;
     title: string;
     path: string;
-    component: ReactNode;
+    icon: ReactNode;
     children: IMenuNode[];
 }
 
