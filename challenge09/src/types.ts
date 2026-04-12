@@ -1,9 +1,10 @@
 import { ReactNode } from "react";
 
-export interface MenuNode {
+export interface IMenuNode {
     id: string;
     title: string;
     path: string;
     icon: ReactNode;
-    children: MenuNode[];
+    children: IMenuNode[];
 }
+
