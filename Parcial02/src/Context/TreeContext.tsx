@@ -10,9 +10,9 @@ import {
 import { useAuth } from "./AuthContext";
 
 interface Props {
-  nodes: TreeNodeData[];
-  createNode: (name: string, type: NodeType, parentId: string | null) => Promise<void>;
-  deleteNode: (node: TreeNodeData) => Promise<void>;
+  tree: NaryTree;
+  createNode: (...args: any[]) => Promise<void>;
+  deleteNode: (...args: any[]) => Promise<void>;
 }
 
 const TreeContext = createContext<Props | null>(null);
