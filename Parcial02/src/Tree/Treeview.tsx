@@ -1,14 +1,11 @@
-import type { TreeNodeData } from "../Types/tree.types";
-
 import { TreeNodeItem } from "../Tree/TreeNodeItem.tsx";
+import { NaryTree } from "../DataForm/NaryTree.ts";
 
-export const TreeView = ({ nodes }: { nodes: TreeNodeData[] }) => {
-  const rootNodes = nodes.filter((n) => n.parentId === null);
-
+export const TreeView = ({ tree }: { tree: NaryTree }) => {
   return (
     <div>
-      {rootNodes.map((node) => (
-        <TreeNodeItem key={node.id} node={node} nodes={nodes} />
+      {tree.rootNodes.map((node) => (
+        <TreeNodeItem key={node.id} node={node} />
       ))}
     </div>
   );

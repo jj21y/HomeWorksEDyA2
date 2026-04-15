@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
-import { TreeNodeData,NodeType } from "../Types/tree.types";
+import { TreeNodeData, NodeType } from "../Types/tree.types"; 
+import { NaryTree } from "../data-structure/NaryTree";
 import {
   getNodesService,
   addNodeService,
@@ -17,13 +18,17 @@ interface Props {
 const TreeContext = createContext<Props | null>(null);
 
 export const TreeProvider = ({ children }: { children: ReactNode }) => {
-  const [nodes, setNodes] = useState<TreeNodeData[]>([]);
+  const [tree, setTree] = useState<NaryTree>(new NaryTree());
   const { user } = useAuth();
 
-  const loadNodes = async () => {
-    const data = await getNodesService();
-    setNodes(data);
-  };
+const loadNodes = async () => {
+  const data = await getNodesService();
+
+  const newTree = new NaryTree();
+  newTree.buildTree(data);
+
+  setTree(newTree);
+};
 
   useEffect(() => {
     loadNodes();
@@ -42,7 +47,7 @@ export const TreeProvider = ({ children }: { children: ReactNode }) => {
       parentId,
       createdByEmail: user.email,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+      updateAt: new Date().toISOString(),
     });
 
     await loadNodes();
@@ -58,7 +63,7 @@ export const TreeProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <TreeContext.Provider value={{ nodes, createNode, deleteNode }}>
+    <TreeContext.Provider value={{ tree, createNode, deleteNode }}>
       {children}
     </TreeContext.Provider>
   );
