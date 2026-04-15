@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LoginPage } from "../pages/LoginPage";
-import { TreePage } from "../pages/TreePage";
+import { LoginPage } from "../Pages/LoginPage"; 
+import { TreePage } from "../Pages/TreePage"; 
 import { ProtectedRoute } from "./ProtectedRoute";
+
 
 export const Router = () => (
   <BrowserRouter>
