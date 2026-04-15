@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { TreeNodeData, NodeType } from "../Types/tree.types"; 
-import { NaryTree } from "../data-structure/NaryTree";
+import { NaryTree } from "../DataForm/NaryTree";
 import {
   getNodesService,
   addNodeService,
