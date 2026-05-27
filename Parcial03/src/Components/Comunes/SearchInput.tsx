@@ -3,9 +3,13 @@ interface Props {
   onChange: (value: string) => void;
 }
 
-export const SearchInput = ({value, onChange,}: Props) => {
+export const SearchInput = ({
+  value,
+  onChange,
+}: Props) => {
   return (
     <input
+      className="search-input"
       type="text"
       placeholder="Search songs..."
       value={value}

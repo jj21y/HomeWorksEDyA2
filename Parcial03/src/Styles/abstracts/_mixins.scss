@@ -1,0 +1,21 @@
+@use "./variables" as *;
+
+@mixin panel {
+  background-color: $panel-color;
+  border-radius: $border-radius;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+@mixin hover-scale {
+  transition: $transition-speed;
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

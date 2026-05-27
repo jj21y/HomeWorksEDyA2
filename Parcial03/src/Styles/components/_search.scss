@@ -1,0 +1,28 @@
+@use "../abstracts/variables" as *;
+
+.search-input {
+  width: 100%;
+  padding: 14px;
+  border-radius: $border-radius;
+  background-color: $card-color;
+  color: $text-color;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.search-input::placeholder {
+  color: $text-secondary;
+}
+
+.section-title {
+  color: $spotify-green;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.panel {
+  background-color: $panel-color;
+  padding: 24px;
+  border-radius: $border-radius;
+  margin-bottom: 24px;
+}

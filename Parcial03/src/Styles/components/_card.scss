@@ -1,0 +1,10 @@
+.song-card {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.03);
+  }
+}
