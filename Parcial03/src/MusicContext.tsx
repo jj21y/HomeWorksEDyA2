@@ -10,10 +10,13 @@ interface MusicContextProps {
   recommendations: Song[];
 
   searchSongs: (value: string) => void;
+
   selectSong: (songId: string) => void;
 }
 
-const MusicContext = createContext<MusicContextProps | null>(null);
+const MusicContext = createContext<MusicContextProps>(
+  {} as MusicContextProps
+);
 
 export const MusicProvider = ({
   children,
@@ -23,11 +26,13 @@ export const MusicProvider = ({
   const system = useMusicSystem();
 
   const [searchResults, setSearchResults] = useState<Song[]>([]);
+
   const [topSongs, setTopSongs] = useState<Song[]>([]);
+
   const [recommendations, setRecommendations] = useState<Song[]>([]);
 
   useEffect(() => {
-    system.loadSongs(MockSongs);
+    system.loadSongs(mockSongs);
 
     setTopSongs(system.getTopSongs(5));
   }, [system]);
@@ -37,11 +42,14 @@ export const MusicProvider = ({
       setSearchResults([]);
       return;
     }
+
     setSearchResults(system.searchSongs(value));
   };
 
   const selectSong = (songId: string) => {
-    setRecommendations(system.getRecommendations(songId));
+    setRecommendations(
+      system.getRecommendations(songId)
+    );
   };
 
   return (
@@ -60,7 +68,5 @@ export const MusicProvider = ({
 };
 
 export const useMusicContext = () => {
-  const context = useContext(MusicContext);
-  if (!context) { throw new Error( "useMusicContext must be used inside MusicProvider");
-  } return context;
+  return useContext(MusicContext);
 };
