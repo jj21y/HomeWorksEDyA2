@@ -1,6 +1,6 @@
 import { DashboardPage } from "./Pages/DashBoardPage";
 import { MusicProvider } from "./MusicContext";
-import "./styles/main.scss";
+import "./main.scss"
 
 export const App = () => {
   return (
